@@ -1,0 +1,128 @@
+/* container for cards */
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(85, 82, 82);
+  font-family: Arial, Helvetica, sans-serif;
+  gap:3px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+.container  h2{
+  font-size: 13px;
+  margin-bottom: 0;
+  text-align: center;
+  margin-left: -15px;
+
+}
+.container p{
+  margin-top: 10px;
+  color: rgb(138, 137, 137);
+}
+.container p span{
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgb(52, 51, 51);
+}
+.container p sup{
+  color: rgb(138, 137, 137);
+  font-size: 15px;
+}
+
+.container span{
+  color: rgb(53 85 181 / var(--tw-text-opacity, 1))
+}
+/*card */
+.card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 230px;
+  padding: 10px;
+}
+.card.active {
+  border-top: 6px solid rgb(26, 173, 75);
+  border-left: 2px solid rgb(26, 173, 75) ;
+  border-right: 2px solid  rgb(26, 173, 75);
+  border-bottom: 2px solid  rgb(26, 173, 75);
+  border-radius: 3%;
+  scale: 1.02;
+  transition: all 0.3s ease-in-out;
+}
+
+/* li */
+ul{
+  list-style: none;
+  text-align:left;
+  gap: 5px;
+  font-size: 14px;
+  margin-bottom: 30px;
+  margin-left: -20px;
+}
+/* buttons for plan */
+.current-plan-btn{
+  font-size: 1rem;
+  color: rgb(26, 173, 75); 
+  padding: 8px 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(26, 173, 75); 
+  background-color: rgba(26, 173, 75, 0.1); 
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+.upgrade-btn{
+  border: none;
+  background-color: rgb(26 173 75 / var(--tw-border-opacity, 1));
+  color: white;
+  padding: 8px 15px;
+  font-size: 1rem;
+  border-radius: 3px;
+}
+/* RangeSlider*/
+.range-container {
+  position: relative;
+  left: 25%;
+  width: 40%;
+  height: 10px;
+}
+
+/* Styling for the range slider input */
+.range-slider {
+  width: 100%;
+  height: 8px; 
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  outline: none;
+  
+}
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 20px;
+  background-color: rgb(24, 24, 24);
+  border-radius: 10%;
+  cursor: pointer;
+  transition: transform 0.2s ease; 
+}
+
+/* Dots along the range */
+.range-dot {
+  position: absolute;
+  width: 5px;
+  height: 10px;
+  border-radius: 10%;
+  background-color: #dbdbdb; 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+  top: 50%; 
+  transform: translateY(-50%); 
+}
+
+/* Glowing effect for active dots */
+.range-dot.active {
+  background-color: rgb(21, 21, 21);
+  transform: scale(1.2); 
+}
