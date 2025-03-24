@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useState } from "react";
+import { useState ,useRef} from "react";
 import RangeSlider from "./planRange";
 import "../../App.css";
 import CheckIcon from "../icons/iconsvg";
@@ -94,17 +94,30 @@ export const plans: Plan[] = [
 
 export const PricingPlans: FC = () => {
   const [planId, setPlanId] = useState<number>(1);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const handlePlan = (id: number) => {
     console.log("Upgrading to plan:", id);
     setPlanId(id);
+    const element = cardRefs.current[id - 1];
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   };
   return (
     <>
-     <RangeSlider currentIndex={planId - 1} setCurrentIndex={(index) => setPlanId(index + 1)} /> 
+     <RangeSlider currentIndex={planId - 1} setCurrentIndex={(index) => {
+        setPlanId(index + 1);
+        const element = cardRefs.current[index];
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }} /> 
       <div className="container">
         {plans.map((plan) => (
-          <div className={`card ${planId === plan.id ? "active" : ""}`}key={plan.id}>
+          <div className={`card ${planId === plan.id ? "active" : ""}`}key={plan.id}
+          onClick={()=>handlePlan(plan.id)}
+          ref={(el) =>{ (cardRefs.current[plan.id - 1] = el)}}>
             <h2>{plan.title}</h2>
             <p className="price-container">
               <sup className="dollar-sign">$ </sup>
