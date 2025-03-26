@@ -1,12 +1,12 @@
 import "./App.css" 
-import { PricingPlans } from "./components/plancards/cards"
+import { UserData } from "./components/api/userList"
 
 import './App.css'
 
 function App() {
   return (
     <>
-  <PricingPlans />
+     <UserData />
     </>
   )
 }

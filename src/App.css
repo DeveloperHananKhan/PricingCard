@@ -126,7 +126,7 @@ ul{
 }
 
 
-/* Small Mobile Screens */
+/*cd Small Mobile Screens */
 @media screen and (max-width: 480px) {
   .container {
     display: flex;
