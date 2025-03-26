@@ -29,7 +29,7 @@ export interface Geo {
     website: string;
     company: Company;
   }
-
+// api call for userdata//
 export const useUserApi = () =>{ 
     const [users,setUsers]=useState<User[]>([])
     const [loading,setLoading]=useState<boolean>(true)
