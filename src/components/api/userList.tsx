@@ -1,4 +1,6 @@
 import { useUserApi } from "./api"
+import { useNavigate } from "react-router-dom";
+import "../../index.css"
 import {
     Table,
     TableBody,
@@ -7,24 +9,35 @@ import {
     TableHead,
     TableRow,
     Paper,
-    CircularProgress,
+    Skeleton,
   } from "@mui/material";
+ 
 
 
 export const UserData =()=>{
-    const {users,loading}=useUserApi()
+    const {users,loading,error}=useUserApi();
+    const navigate = useNavigate();
 return(<>
-<div>
+<div>        
+    
         {loading ? (    
-         <CircularProgress size={80} 
-         style={{ 
-           margin: "auto", 
-           display: "block", 
-           position: "absolute", 
-           top: "40%", 
-           left: "50%", 
-           transform: "translate(-50%, -50%)" }} />
-        ) : (
+         <div style={{ textAlign: "center", marginTop: "20px" }}>
+      
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         <Skeleton variant="rectangular" width="100%" height={50} animation="wave" style={{ marginBottom: 10 }} />
+         
+    
+       </div>
+        ) : 
+        error ? ( <div style={{ textAlign: "center", marginTop: "20px" }}>{error}</div> ) : (
             <TableContainer component={Paper} style={{ marginTop: "20px" }}>
             <Table>
               <TableHead>
@@ -41,15 +54,16 @@ return(<>
               </TableHead>
               <TableBody>
                 {users.map((user) => (
-                  <TableRow key={user.id}>
-                    <TableCell>{user.id}</TableCell>
-                    <TableCell>{user.name}</TableCell>
-                    <TableCell>{user.username}</TableCell>
-                    <TableCell>{user.email}</TableCell>
-                    <TableCell>{user.phone}</TableCell>
-                    <TableCell>{user.website}</TableCell>
-                    <TableCell>{user.company.name}</TableCell>
-                    <TableCell>
+                  <TableRow key={user.id} onClick={() => navigate(`/userDetails/${user.id}`,{state:user})} 
+                  style={{ cursor: "pointer" }}>
+                    <TableCell className="truncate">{user.id}</TableCell>
+                    <TableCell className="truncate">{user.name}</TableCell>
+                    <TableCell className="truncate">{user.username}</TableCell>
+                    <TableCell className="truncate">{user.email}</TableCell>
+                    <TableCell className="truncate">{user.phone}</TableCell>
+                    <TableCell className="truncate">{user.website}</TableCell>
+                    <TableCell className="truncate">{user.company.name}</TableCell>
+                    <TableCell className="truncate">
                       {user.address.street}, {user.address.city}, {user.address.zipcode}
                     </TableCell>
                   </TableRow>

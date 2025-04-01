@@ -1,4 +1,6 @@
-import { useEffect,useState } from "react";
+import { useEffect,useState } from "react"
+import { ErrorCard } from "./error.card/Error";
+import { JSX } from "@emotion/react/jsx-runtime";
 
 export interface Geo {
     lat: string;
@@ -33,6 +35,7 @@ export interface Geo {
 export const useUserApi = () =>{ 
     const [users,setUsers]=useState<User[]>([])
     const [loading,setLoading]=useState<boolean>(true)
+   const [error,setError]=useState<JSX.Element | null>(null)
     useEffect(()=>{   const dataUser = async ()=>{
 
 
@@ -46,15 +49,17 @@ export const useUserApi = () =>{
         } else {
             throw new Error('Network response was not ok'); 
         }
-    } catch (error) {
-        console.error("there was a error",error)
-        throw error
+    } catch (err: unknown) {
+      console.error('There was an error:', err);
+      setError(
+        <ErrorCard message={err instanceof Error ? err.message : 'Unknown error'} />
+      );
     }
    finally{
-    setLoading(false)
+    setTimeout(() => setLoading(false), 1000)
    }
 }
 dataUser()
 },[])
-return {users,loading}}
+return {users,loading,error}}
 
