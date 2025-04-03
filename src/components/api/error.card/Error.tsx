@@ -10,8 +10,7 @@ export const ErrorCard: React.FC<ErrorCardProps> = ({ message }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height:'90vh'
-          
+          height: "90vh",
         }}
       >
         <Card

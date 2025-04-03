@@ -22,14 +22,14 @@ export const UserDetails = () => {
       <div className="user-details">
         <p>
           <Tag className="user-icon" />
-          <strong>ID:</strong>  {user.id}
+          <strong>ID:</strong> {user.id}
         </p>
         <p>
           <Person className="user-icon" />
-          <strong>Name:</strong>  {user.name}
+          <strong>Name:</strong> {user.name}
         </p>
         <p>
-          <strong>Username:</strong>  {user.username}
+          <strong>Username:</strong> {user.username}
         </p>
         <p>
           <Email className="user-icon" />

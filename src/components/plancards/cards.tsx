@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useState ,useRef} from "react";
+import { useState, useRef } from "react";
 import RangeSlider from "./planRange";
 import "../../App.css";
 import CheckIcon from "../icons/iconsvg";
@@ -106,18 +106,26 @@ export const PricingPlans: FC = () => {
   };
   return (
     <>
-     <RangeSlider currentIndex={planId - 1} setCurrentIndex={(index) => {
-        setPlanId(index + 1);
-        const element = cardRefs.current[index];
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      }} /> 
+      <RangeSlider
+        currentIndex={planId - 1}
+        setCurrentIndex={(index) => {
+          setPlanId(index + 1);
+          const element = cardRefs.current[index];
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }}
+      />
       <div className="container">
         {plans.map((plan) => (
-          <div className={`card ${planId === plan.id ? "active" : ""}`}key={plan.id}
-          onClick={()=>handlePlan(plan.id)}
-          ref={(el) =>{ (cardRefs.current[plan.id - 1] = el)}}>
+          <div
+            className={`card ${planId === plan.id ? "active" : ""}`}
+            key={plan.id}
+            onClick={() => handlePlan(plan.id)}
+            ref={(el) => {
+              cardRefs.current[plan.id - 1] = el;
+            }}
+          >
             <h2>{plan.title}</h2>
             <p className="price-container">
               <sup className="dollar-sign">$ </sup>
@@ -135,8 +143,8 @@ export const PricingPlans: FC = () => {
                 <span>{plan.features.searchs} </span>searches a month
               </li>
               <li>
-                <CheckIcon /><span>{plan.features.links} </span>AI anchor
-                generations
+                <CheckIcon />
+                <span>{plan.features.links} </span>AI anchor generations
               </li>
               <li>
                 {" "}
