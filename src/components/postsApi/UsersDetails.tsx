@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 
 export const UserPostDetails = () => {
-  const { detail, loading, error, page, setPage, currentItems, rows } =
+  const { detail, loading, error, page, setPage,  rows } =
     usePostApi();
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -119,7 +119,7 @@ export const UserPostDetails = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {currentItems.map((user) => (
+                {detail.map((user) => (
                   <TableRow key={user.id}>
                     <TableCell>{user.id}</TableCell>
                     <TableCell>{user.title}</TableCell>
@@ -130,7 +130,7 @@ export const UserPostDetails = () => {
             </Table>
           </TableContainer>
           <Pagination
-            count={Math.ceil(detail.length / rows)}
+            count={10}
             page={page}
             onChange={handleChange}
             shape="rounded"

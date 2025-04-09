@@ -13,16 +13,15 @@ export const usePostApi = () => {
   const [error, setError] = useState<JSX.Element | null>(null);
   const [detail, setDetail] = useState<UserPosts[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [rows, setRows] = useState<number>(10);
-  const indexLastItem = page * rows;
-  const indexFirstItem = indexLastItem - rows;
-  const currentItems = detail.slice(indexFirstItem, indexLastItem);
+  const [rows] = useState<number>(10);
+ 
+
   useEffect(() => {
     const postData = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://jsonplaceholder.typicode.com/posts"
+          `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`
         );
 
         if (response.ok) {
@@ -40,12 +39,12 @@ export const usePostApi = () => {
           />
         );
       } finally {
-        setTimeout(() => setLoading(false), 1000);
+        setTimeout(() => setLoading(false), 500);
       }
     };
 
     postData();
-  }, []);
+  }, [page]);
 
-  return { detail, loading, error, page, setPage, currentItems, rows };
+  return { detail, loading, error, page, setPage, rows };
 };
